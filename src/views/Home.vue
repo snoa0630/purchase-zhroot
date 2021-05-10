@@ -1,18 +1,28 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    {{$store.state.username}}
+    <el-button type="primary" @click="logoff">退出</el-button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import {state} from '../store'
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+  },
+  methods:{
+    logoff(){
+      this.$store.commit('set_info',{
+        username:"",
+        token:""
+      })
+      this.$router.replace({name:"Login"})
+    }
+  },
+  // beforeRouteEnter(to,form,next){
+    
+  // }
 }
 </script>
